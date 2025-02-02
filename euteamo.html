@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Amo em 100 Línguas</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: 'Dancing Script', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #4a4a4a;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        p.visible {
+            opacity: 1;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Eu te amo em todas as línguas minha princesa </h1>
+    <div id="phrases"></div>
+
+    <script>
+        const phrases = [
+            "Português: Eu te amo",
+            "Inglês: I love you",
+            "Espanhol: Te quiero",
+            "Francês: Je t'aime",
+            "Alemão: Ich liebe dich",
+            "Italiano: Ti amo",
+            "Chinês (Mandarim): 我爱你 (Wǒ ài nǐ)",
+            "Japonês: 愛してる (Aishiteru)",
+            "Coreano: 사랑해 (Saranghae)",
+            "Russo: Я тебя люблю (Ya tebya lyublyu)",
+            "Árabe: أحبك (Uhibbuka)",
+            "Hindi: मैं तुमसे प्यार करता हूँ (Main tumse pyar karta hoon)",
+            "Bengali: আমি তোমাকে ভালোবাসি (Ami tomake bhalobashi)",
+            "Turco: Seni seviyorum",
+            "Grego: Σ' αγαπώ (S'agapó)",
+            "Holandês: Ik hou van jou",
+            "Sueco: Jag älskar dig",
+            "Dinamarquês: Jeg elsker dig",
+            "Norueguês: Jeg elsker deg",
+            "Tailandês: ฉันรักคุณ (Chan rak khun)",
+            "Vietnamita: Anh yêu em",
+            "Hebraico: אני אוהב אותך (Ani ohev otach)",
+            "Polonês: Kocham cię",
+            "Húngaro: Szeretlek",
+            "Tcheco: Miluji tě",
+            "Eslovaco: Ľúbim ťa",
+            "Ucraniano: Я тебе кохаю (Ya tebe kokhayu)",
+            "Romeno: Te iubesc",
+            "Finlandês: Minä rakastan sinua",
+            "Malaio: Saya cinta padamu",
+            "Indonésio: Aku cinta kamu",
+            "Filipino (Tagalo): Mahal kita",
+            "Swahili: Nakupenda",
+            "Zulu: Ngiyakuthanda",
+            "Africâner: Ek is lief vir jou",
+            "Igbo: A hụrụ m gị n'anya",
+            "Iorubá: Mo nifẹ rẹ",
+            "Havaiano: Aloha wau ia 'oe",
+            "Gaélico Irlandês: Tá grá agam duit",
+            "Gaélico Escocês: Tha gaol agam ort",
+            "Galês: Rwy'n dy garu di",
+            "Basco: Maite zaitut",
+            "Catalão: T'estimo",
+            "Esperanto: Mi amas vin",
+            "Latim: Te amo",
+            "Sérvio: Волим те (Volim te)",
+            "Croata: Volim te",
+            "Bósnio: Volim te",
+            "Macedônio: Те сакам (Te sakam)",
+            "Esloveno: Ljubim te",
+            "Albanês: Të dua",
+            "Lituano: Aš tave myliu",
+            "Letão: Es tevi mīlu",
+            "Estoniano: Ma armastan sind",
+            "Amárico: እወድሃለሁ (Ewedihalehu)",
+            "Somali: Waan ku jeclahay",
+            "Kinyarwanda: Ndagukunda",
+            "Tâmil: நான் உன்னை காதலிக்கிறேன் (Naan unnai kathalikkinren)",
+            "Telugu: నేను నిన్ను ప్రేమిస్తున్నాను (Nēnu ninnu prēmistunnānu)",
+            "Canarim: ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ (Nānu ninnannu prītisuttēne)",
+            "Guzerate: હું તને પ્રેમ કરું છું (Hu tane prem karu chhu)",
+            "Punjabi: ਮੈਂ ਤੈਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ (Main tenu pyaar karda haan)",
+            "Marata: मी तुला प्रेम करतो (Mi tula prem karto)",
+            "Cazaque: Мен сені сүйемін (Men seni süyemin)",
+            "Uzbeque: Men seni sevaman",
+            "Tadique: Ман туро дӯст медорам (Man turo dust medoram)",
+            "Quirguiz: Мен сени жакшы көрөм (Men seni jakshy köröm)",
+            "Mongol: Би чамд хайртай (Bi chamd khairtai)",
+            "Nepalês: म तिमीलाई माया गर्छु (Ma timilai maya garchu)",
+            "Sinhala: මම ඔයාට ආදරෙයි (Mama oyata adarei)",
+            "Birmanês: မင်းကိုချစ်တယ် (Min ko chit tal)",
+            "Khmer: ខ្ញុំស្រឡាញ់អ្នក (Knhom srolanh anak)",
+            "Lao: ຂ້ອຍຮັກເຈົ້າ (Khony hak chao)",
+            "Georgiano: მე შენ მიყვარხარ (Me shen miqvarxar)",
+            "Armênio: Ես քեզ սիրում եմ (Yes k’ez sirum yem)",
+            "Azeri: Mən səni sevirəm",
+        ];
+
+        const phrasesContainer = document.getElementById('phrases');
+        let index = 0;
+
+        function showPhrases() {
+            if (index < phrases.length) {
+                const p = document.createElement('p');
+                p.textContent = phrases[index];
+                phrasesContainer.appendChild(p);
+                setTimeout(() => p.classList.add('visible'), 10);
+                index++;
+                setTimeout(showPhrases, 1000);
+            }
+        }
+
+        showPhrases();
+    </script>
+</body>
+</html>
